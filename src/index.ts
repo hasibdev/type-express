@@ -2,8 +2,7 @@ import http from 'http'
 
 import { app } from './config/express'
 import mongoose from './config/mongoose'
-// import { port } from './config/env'
-let port = 8000
+import env from './config/env'
 
 // Server Running
 const server = http.createServer(app)
@@ -12,6 +11,6 @@ const server = http.createServer(app)
 mongoose.connect()
 
 server.on('listening', async function () {
-   console.log(`Application running on http://localhost:${port}`)
+   console.log(`Application running on http://localhost:${env.port}`)
 })
-server.listen(port)
+server.listen(env.port)
