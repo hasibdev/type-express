@@ -10,7 +10,12 @@
       "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
       "strict": true, /* Enable all strict type-checking options. */
       "removeComments": true, /* Disable emitting comments. */
-      "skipLibCheck": true /* Skip type checking all .d.ts files. */
+      "skipLibCheck": true, /* Skip type checking all .d.ts files. */
+      "paths": {
+         "@": [
+            "./src"
+         ]
+      }, /* Specify a set of entries that re-map imports to additional lookup locations. */
       /* Visit https://aka.ms/tsconfig.json to read more about this file */
       /* Projects */
       // "incremental": true,                              /* Enable incremental compilation */
@@ -31,7 +36,6 @@
       // "noLib": true,                                    /* Disable including any library files, including the default lib.d.ts. */
       // "useDefineForClassFields": true,                  /* Emit ECMAScript-standard-compliant class fields. */
       /* Modules */
-      // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
       // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
       // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */
       // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */

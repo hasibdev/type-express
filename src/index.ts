@@ -1,8 +1,8 @@
 import http from 'http'
 
-import { app } from 'src/config/express'
-import mongoose from 'src/config/mongoose'
-import env from 'src/config/env'
+import { app } from './config/express'
+import mongoose from './config/mongoose'
+import env from './config/env'
 
 // Server Running
 const server = http.createServer(app)

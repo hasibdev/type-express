@@ -1,5 +1,5 @@
-import User from "src/models/User"
-import paginated from "src/helpers/paginated"
+import User from "../models/User"
+import paginated from "../helpers/paginated"
 const { validationResult } = require('express-validator')
 
 

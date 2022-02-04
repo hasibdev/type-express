@@ -1,6 +1,6 @@
 
 import express from 'express'
-import users from 'src/routes/api/users.route'
+import users from '../routes/api/users.route'
 // import categories from './api/categories.route'
 // import products from './api/products.route'
 
