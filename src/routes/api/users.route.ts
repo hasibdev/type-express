@@ -1,6 +1,6 @@
 
 import express from 'express'
-import controller from '../../controllers/user.controller'
+import controller from 'src/controllers/user.controller'
 
 const router = express.Router({ mergeParams: true })
 
