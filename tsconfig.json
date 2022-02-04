@@ -11,11 +11,7 @@
       "strict": true, /* Enable all strict type-checking options. */
       "removeComments": true, /* Disable emitting comments. */
       "skipLibCheck": true, /* Skip type checking all .d.ts files. */
-      "paths": {
-         "@": [
-            "./src"
-         ]
-      }, /* Specify a set of entries that re-map imports to additional lookup locations. */
+      "paths": {}, /* Specify a set of entries that re-map imports to additional lookup locations. */
       /* Visit https://aka.ms/tsconfig.json to read more about this file */
       /* Projects */
       // "incremental": true,                              /* Enable incremental compilation */
