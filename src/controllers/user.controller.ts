@@ -1,5 +1,5 @@
 import User from "../models/User"
-import paginated from "../helpers/paginated"
+import pagination from "../helpers/pagination"
 const { validationResult } = require('express-validator')
 
 
@@ -9,9 +9,9 @@ const { validationResult } = require('express-validator')
  */
 const getAll = async (req: any, res: any) => {
    try {
-      const { limit, skip, meta } = await paginated(User, req)
+      const { limit, skip, meta } = await pagination(User, req)
 
-      const data = await User.find().limit(limit).skip(skip)
+      const data = await User.find().limit(limit).skip(skip).select('-password')
       res.json({ data, meta })
    } catch (error) {
       res.status(500).json({ error })

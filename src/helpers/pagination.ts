@@ -1,3 +1,5 @@
+
+
 export default async function (Model: any, req: any, { defaultPage = 1, defaultLimit = 25 } = {}) {
    try {
       const { page, perPage } = req.query
