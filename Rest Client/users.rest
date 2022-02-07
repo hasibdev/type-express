@@ -1,11 +1,33 @@
+### Get all Users
 GET http://localhost:8000/api/users
-###
+
+### Get single User by id
+GET http://localhost:8000/api/users/61fd4cc0981aef2bf6a882f7
+
+### Create new User
 POST http://localhost:8000/api/users
 Content-Type: application/json
 
 {
    "firstName": "John",
    "lastName": "Doe",
-   "email": "john@gmail.com",
-   "password": "123456"
+   "email": "john9@gmail.com",
+   "password": "123456",
+   "confirmed_password": "123456"
 }
+
+
+### Update User
+PUT http://localhost:8000/api/users/61fd4cc0981aef2bf6a882f7
+Content-Type: application/json
+
+{
+   "firstName": "Updated",
+   "lastName": "Test",
+   "email": "test@test.com",
+   "phone": "123456789"
+}
+
+
+### Delete User
+DELETE  http://localhost:8000/api/users/61fd4cc0981aef2bf6a882f7

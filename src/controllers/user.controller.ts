@@ -1,13 +1,12 @@
 import User from "../models/User"
 import pagination from "../helpers/pagination"
-const { validationResult } = require('express-validator')
-
+import { Request, Response } from 'express'
 
 /**
  * Get List of Data
  * @route GET api/users
  */
-const getAll = async (req: any, res: any) => {
+const getAll = async (req: Request, res: Response) => {
    try {
       const { limit, skip, meta } = await pagination(User, req)
 
@@ -22,7 +21,7 @@ const getAll = async (req: any, res: any) => {
  * Get single Data
  * @route GET api/users/:id
  */
-const getOne = async (req: any, res: any) => {
+const getOne = async (req: Request, res: Response) => {
    try {
       const data = await User.findById(req.params.id).select('-password')
       if (!data) {
@@ -38,15 +37,16 @@ const getOne = async (req: any, res: any) => {
  * Create new Data
  * @route POST api/users
  */
-const create = async (req: any, res: any) => {
-   const errors = validationResult(req)
-   if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() })
-   }
+const create = async (req: Request, res: Response) => {
+   // const errors = validationResult(req)
+   // if (!errors.isEmpty()) {
+   //    return res.status(422).json({ errors: errors.array() })
+   // }
 
    const { firstName, lastName, email, password, phone } = req.body
    try {
-      const data = await User.create({ firstName, lastName, email, password, phone })
+      const user = await User.create({ firstName, lastName, email, password, phone })
+      const data = await User.findById(user.id).select('-password')
 
       res.json({ data })
    } catch (error) {
@@ -58,12 +58,7 @@ const create = async (req: any, res: any) => {
  * Update Data
  * @route PUT api/users/:id
  */
-const update = async (req: any, res: any) => {
-   const errors = validationResult(req)
-   if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() })
-   }
-
+const update = async (req: Request, res: Response) => {
    const { firstName, lastName, email, phone } = req.body
    const { id } = req.params
    try {
@@ -73,7 +68,7 @@ const update = async (req: any, res: any) => {
          return res.status(404).json({ message: 'User not found!' })
       }
 
-      res.json({ data: await User.findById(id) })
+      res.json({ data: await User.findById(id).select('-password') })
    } catch (error) {
       res.status(500).json({ error })
    }
@@ -83,7 +78,7 @@ const update = async (req: any, res: any) => {
  * Delete Data
  * @route DELETE api/users/:id
  */
-const destroy = async (req: any, res: any) => {
+const destroy = async (req: Request, res: Response) => {
    try {
       const data = await User.findByIdAndDelete(req.params.id)
 

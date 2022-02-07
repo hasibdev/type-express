@@ -34,6 +34,10 @@ const schema = new Schema({
       type: Boolean,
       default: false
    },
+   verifiedAt: {
+      type: Date,
+      default: null
+   },
    blocked: {
       type: Boolean,
       default: false
