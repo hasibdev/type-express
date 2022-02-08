@@ -1,0 +1,80 @@
+components:
+   schemas:
+      User:
+         type: object,
+         required: [firstName, lastName, email, password]
+         properties:
+            _id:
+               type: string
+               description: Auto generated id
+            firstName:
+               type: string
+               description: First Name
+            lastName:
+               type: string
+               description: Last Name
+            email:
+               type: string
+               description: E-mail Address
+            password:
+               type: string
+               description: Password
+            phone:
+               type: string
+               description: Phone Number
+         example:
+            _id: 61f276d5a0fdcfd610aab2e8
+            firstName: First Name
+            lastName: Last Name
+            email: john@gmail.com
+            phone: 0123456789
+            verified: false
+            verifiedAt: 2022-01-27T10:41:25.454Z
+            blocked: false
+            guard: users
+            createdAt: 2022-01-27T10:41:25.454Z
+            updatedAt: 2022-01-27T10:41:25.454Z
+
+tags:
+   - name: Users
+     description: Manage Users api
+
+paths:
+   /api/users:
+      get:
+         summary: Returns the list of users.
+         tags: [Users]
+         responses:
+            200:
+               description: Success
+               content:
+                  application/json:
+                     schema:
+                        type: array
+                        items:
+                           $ref: "#/components/schemas/User"
+   /api/users/{id}:
+      get:
+         summary: Get the user by id
+         tags: [Users]
+         parameters:
+            - in: path
+              name: id
+              required: true
+              description: User id
+              schema:
+                 type: string
+
+         responses:
+            200:
+               description: Success
+               content:
+                  application/json:
+                     schema:
+                        $ref: "#/components/schemas/User"
+            404:
+               description: Not found
+               content:
+                  application/json:
+                     schema:
+                        type: object

@@ -1,0 +1,79 @@
+{
+   "components": {
+      "schemas": {
+         "User": {
+            "type": "object",
+            "required": [
+               "firstName",
+               "lastName",
+               "email",
+               "password"
+            ],
+            "properties": {
+               "_id": {
+                  "type": "string",
+                  "description": "Auto generated id"
+               },
+               "firstName": {
+                  "type": "string",
+                  "description": "First Name"
+               },
+               "lastName": {
+                  "type": "string",
+                  "description": "Last Name"
+               },
+               "email": {
+                  "type": "string",
+                  "description": "Email"
+               },
+               "password": {
+                  "type": "string",
+                  "description": "Password"
+               },
+               "phone": {
+                  "type": "string",
+                  "description": "Phone Number"
+               }
+            },
+            "example": {
+               "_id": "61f276d5a0fdcfd610aab2e8",
+               "firstName": "First Name",
+               "lastName": "Last Name",
+               "email": "Email",
+               "phone": "Phone Number"
+            }
+         }
+      }
+   },
+   "tags": [
+      {
+         "name": "Users",
+         "description": "Manage Users Api"
+      }
+   ],
+   "paths": {
+      "/api/users": {
+         "get": {
+            "summary": "Get the list of users",
+            "tags": [
+               "Users"
+            ],
+            "responses": {
+               "200": {
+                  "description": "Success",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "array",
+                           "items": {
+                              "$ref": "#/components/schemas/User"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}
