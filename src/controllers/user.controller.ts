@@ -31,7 +31,7 @@ export const getAll = async (req: Request, res: Response) => {
  */
 export const getOne = async (req: Request, res: Response) => {
    try {
-      const data = await User.findById(req.params.id).select('-password')
+      const data = await User.findById(req.params.id)
       if (!data) {
          return res.status(404).json({ message: 'User not found!' })
       }
@@ -46,17 +46,12 @@ export const getOne = async (req: Request, res: Response) => {
  * @route POST api/users
  */
 export const create = async (req: Request, res: Response) => {
-   // const errors = validationResult(req)
-   // if (!errors.isEmpty()) {
-   //    return res.status(422).json({ errors: errors.array() })
-   // }
-
    const { firstName, lastName, email, password, phone } = req.body
    try {
       const user = await User.create({ firstName, lastName, email, password, phone })
       const data = await User.findById(user.id).select('-password')
 
-      res.json({ data })
+      res.status(201).json({ data })
    } catch (error) {
       res.status(500).json({ error })
    }

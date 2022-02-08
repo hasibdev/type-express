@@ -15,8 +15,8 @@ export default function (method: string) {
    switch (method) {
       case 'create':
          return [
-            body('firstName').notEmpty().isAlpha().isLength({ max: 50 }),
-            body('lastName').notEmpty().isAlpha().isLength({ max: 50 }),
+            body('firstName').notEmpty().isLength({ max: 50 }),
+            body('lastName').notEmpty().isLength({ max: 50 }),
             body('email').notEmpty().isEmail().custom(async (email) => {
                const user = await User.exists({ email })
                if (user) throw new Error('E-mail already in use')

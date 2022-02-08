@@ -41,6 +41,7 @@ tags:
 
 paths:
    /api/users:
+      # Get all Users
       get:
          summary: Returns the list of users.
          tags: [Users]
@@ -53,7 +54,40 @@ paths:
                         type: array
                         items:
                            $ref: "#/components/schemas/User"
+            500:
+               description: Some error happened
+
+      # Create new User
+      post:
+         summary: Create new User
+         tags: [Users]
+         requestBody:
+            required: true
+            content:
+               application/json:
+                  schema:
+                     type: object
+                     example:
+                        firstName: First Name
+                        lastName: Last Name
+                        email: john@gmail.com
+                        phone: 0123456789
+                        password: 123456
+                        confirmed_password: 123456
+         responses:
+            201:
+               description: User Created
+               content:
+                  application/json:
+                     schema:
+                        $ref: "#/components/schemas/User"
+            422:
+               description: Validation Errors
+            500:
+               description: Some error happened
+
    /api/users/{id}:
+      # Get Single user by id
       get:
          summary: Get the user by id
          tags: [Users]
@@ -78,3 +112,72 @@ paths:
                   application/json:
                      schema:
                         type: object
+                        example:
+                           message: User not found!
+            500:
+               description: Some error happened
+
+      # Update user
+      put:
+         summary: Update User
+         tags: [Users]
+         parameters:
+            - in: path
+              name: id
+              required: true
+              description: User id
+              schema:
+                 type: string
+         requestBody:
+            required: true
+            content:
+               application/json:
+                  schema:
+                     type: object
+                     example:
+                        firstName: First Name
+                        lastName: Last Name
+                        email: john@gmail.com
+                        phone: 0123456789
+         responses:
+            200:
+               description: User Updated
+               content:
+                  application/json:
+                     schema:
+                        $ref: "#/components/schemas/User"
+            422:
+               description: Validation Errors
+            500:
+               description: Some error happened
+
+      # Delete User
+      delete:
+         summary: Delete User
+         tags: [Users]
+         parameters:
+            - in: path
+              name: id
+              required: true
+              description: User id
+              schema:
+                 type: string
+         responses:
+            200:
+               description: User Deleted
+               content:
+                  application/json:
+                     schema:
+                        type: object
+                        example:
+                           message: Deleted Successfully!
+            404:
+               description: Not Found
+               content:
+                  application/json:
+                     schema:
+                        type: object
+                        example:
+                           message: User not found!
+            500:
+               description: Some error happened
