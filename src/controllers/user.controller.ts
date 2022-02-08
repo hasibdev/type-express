@@ -3,10 +3,18 @@ import pagination from "../helpers/pagination"
 import { Request, Response } from 'express'
 
 /**
+ * User Login
+ * @route POST api/users/login
+ */
+export const login = async (req: Request, res: Response) => {
+   res.send('login')
+}
+
+/**
  * Get List of Data
  * @route GET api/users
  */
-const getAll = async (req: Request, res: Response) => {
+export const getAll = async (req: Request, res: Response) => {
    try {
       const { limit, skip, meta } = await pagination(User, req)
 
@@ -21,7 +29,7 @@ const getAll = async (req: Request, res: Response) => {
  * Get single Data
  * @route GET api/users/:id
  */
-const getOne = async (req: Request, res: Response) => {
+export const getOne = async (req: Request, res: Response) => {
    try {
       const data = await User.findById(req.params.id).select('-password')
       if (!data) {
@@ -37,7 +45,7 @@ const getOne = async (req: Request, res: Response) => {
  * Create new Data
  * @route POST api/users
  */
-const create = async (req: Request, res: Response) => {
+export const create = async (req: Request, res: Response) => {
    // const errors = validationResult(req)
    // if (!errors.isEmpty()) {
    //    return res.status(422).json({ errors: errors.array() })
@@ -58,7 +66,7 @@ const create = async (req: Request, res: Response) => {
  * Update Data
  * @route PUT api/users/:id
  */
-const update = async (req: Request, res: Response) => {
+export const update = async (req: Request, res: Response) => {
    const { firstName, lastName, email, phone } = req.body
    const { id } = req.params
    try {
@@ -78,7 +86,7 @@ const update = async (req: Request, res: Response) => {
  * Delete Data
  * @route DELETE api/users/:id
  */
-const destroy = async (req: Request, res: Response) => {
+export const destroy = async (req: Request, res: Response) => {
    try {
       const data = await User.findByIdAndDelete(req.params.id)
 
@@ -92,4 +100,4 @@ const destroy = async (req: Request, res: Response) => {
    }
 }
 
-export default { getAll, getOne, create, update, destroy }
+export default { getAll, getOne, create, update, destroy, login }

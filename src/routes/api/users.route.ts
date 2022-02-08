@@ -10,4 +10,8 @@ router.post('/', validation('create'), controller.create)
 router.put('/:id', validation('update'), controller.update)
 router.delete('/:id', controller.destroy)
 
+// Auth
+router.post('/register', validation('create'), controller.create)
+router.post('/login', validation('create'), controller.login)
+
 export default router
